@@ -4,8 +4,8 @@ join_keyboard = InlineKeyboardMarkup(
     inline_keyboard=[
         [
             InlineKeyboardButton(
-                text="📢 Join Channel",
-                url="https://t.me/TradeLearn Hub"
+                text="📢 Join TradeLearn Hub",
+                url="https://t.me/tradelearnhub12"
             )
         ],
         [
