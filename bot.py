@@ -1,24 +1,27 @@
-from aiogram import Bot, Dispatcher
-from aiogram.filters import Command
-from aiogram.types import Message
-import asyncio
-import os
-
-BOT_TOKEN = os.getenv("BOT_TOKEN")
-
-bot = Bot(token=BOT_TOKEN)
-dp = Dispatcher()
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 @dp.message(Command("start"))
 async def start(message: Message):
-    await message.answer(
-        "👋 Welcome to TradeLearn Bot!\n\n"
-        "📚 Learn trading step by step.\n"
-        "📢 Join our official channel for daily updates."
+
+    keyboard = InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(
+                    text="📢 Join TradeLearn Hub",
+                    url="https://t.me/TradeLearnHub"
+                )
+            ],
+            [
+                InlineKeyboardButton(
+                    text="✅ Verify",
+                    callback_data="verify"
+                )
+            ]
+        ]
     )
 
-async def main():
-    await dp.start_polling(bot)
-
-if __name__ == "__main__":
-    asyncio.run(main())
+    await message.answer(
+        "👋 Welcome to TradeLearn Bot!\n\n"
+        "Please join our official channel first.",
+        reply_markup=keyboard
+    )
