@@ -1,27 +1,29 @@
-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+import asyncio
+import os
+
+from aiogram import Bot, Dispatcher
+from aiogram.filters import Command
+from aiogram.types import Message
+from keyboards.menu import join_keyboard
+
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+
+bot = Bot(token=BOT_TOKEN)
+dp = Dispatcher()
+
 
 @dp.message(Command("start"))
 async def start(message: Message):
-
-    keyboard = InlineKeyboardMarkup(
-        inline_keyboard=[
-            [
-                InlineKeyboardButton(
-                    text="📢 Join TradeLearn Hub",
-                    url="https://t.me/TradeLearnHub"
-                )
-            ],
-            [
-                InlineKeyboardButton(
-                    text="✅ Verify",
-                    callback_data="verify"
-                )
-            ]
-        ]
-    )
-
     await message.answer(
         "👋 Welcome to TradeLearn Bot!\n\n"
-        "Please join our official channel first.",
-        reply_markup=keyboard
+        "Please join our official channel before continuing.",
+        reply_markup=join_keyboard
     )
+
+
+async def main():
+    await dp.start_polling(bot)
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
