@@ -1,8 +1,5 @@
-print("🤖 TradeLearn Bot is starting...")
+def welcome():
 
-bot_name = "TradeLearnBot"
-channel_name = "TradeLearn Hub"
+    print("Welcome to TradeLearnBot!")
 
-print("Bot Name:", bot_name)
-print("Channel:", channel_name)
-print("Welcome to", channel_name)
+welcome()
